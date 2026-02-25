@@ -1,6 +1,11 @@
+name = "sanjay-dev"
+compatibility_date = "2026-02-25"
+
+[assets]
+directory = "./dist"
+
 [build]
-  command = "npm run build"
-  destination = "dist"
+command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "22"
+NODE_VERSION = "22"
