@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const skills = [
+  { category: 'Backend', items: ['.NET 10', 'C#', 'ASP.NET Core', 'Entity Framework', 'gRPC'] },
+  { category: 'Cloud', items: ['AWS', 'Azure', 'Cloudflare', 'Docker', 'Kubernetes'] },
+  { category: 'Frontend', items: ['Blazor', 'Astro', 'TypeScript', 'Tailwind CSS'] },
+  { category: 'Tools', items: ['Git', 'GitHub Actions', 'Terraform', 'Rider', 'VS Code'] },
+];
+
+const experience = [
+  { role: 'Senior Software Engineer', company: 'Company Name', period: '2022 – Present', desc: 'Building cloud-native backend systems on AWS using .NET 10 and microservices architecture.' },
+  { role: 'Software Engineer', company: 'Previous Company', period: '2019 – 2022', desc: 'Developed RESTful APIs and internal tooling with ASP.NET Core and Azure.' },
+];
+---
+
+<Layout title="About — Sanjay Chaudhari" description="Software Engineer specialising in .NET and AWS. Learn about my experience, skills, and how to get in touch.">
+  <div class="max-w-2xl">
+
+    <!-- Bio -->
+    <div class="flex items-start gap-5 mb-10 pb-10 border-b border-[var(--color-border)]">
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-lg shadow-blue-500/20">
+        SC
+      </div>
+      <div>
+        <h1 class="text-xl font-bold text-[var(--color-text)] mb-1">Sanjay Chaudhari</h1>
+        <p class="text-sm text-[var(--color-accent)] mb-3">Software Engineer · .NET & Cloud</p>
+        <p class="text-sm text-[var(--color-muted-2)] leading-relaxed">
+          Backend engineer based in India, focused on distributed systems and cloud-native development with .NET and AWS.
+          I write about what I learn — mostly around .NET, AWS, and software architecture.
+        </p>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <section class="mb-10 pb-10 border-b border-[var(--color-border)]">
+      <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-5">Experience</h2>
+      <div class="space-y-5">
+        {experience.map((e) => (
+          <div class="flex gap-4">
+            <div class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] mt-2 flex-shrink-0"></div>
+            <div>
+              <div class="flex items-baseline gap-2 mb-0.5">
+                <span class="text-sm font-semibold text-[var(--color-text)]">{e.role}</span>
+                <span class="text-xs text-[var(--color-muted)]">@ {e.company}</span>
+              </div>
+              <p class="text-xs text-[var(--color-muted)] mb-1.5">{e.period}</p>
+              <p class="text-sm text-[var(--color-muted-2)] leading-relaxed">{e.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-10 pb-10 border-b border-[var(--color-border)]">
+      <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-5">Skills</h2>
+      <div class="grid grid-cols-2 gap-3">
+        {skills.map((group) => (
+          <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl">
+            <h3 class="text-xs font-semibold text-[var(--color-accent)] mb-3 uppercase tracking-wide">{group.category}</h3>
+            <div class="flex flex-wrap gap-1.5">
+              {group.items.map((item) => (
+                <span class="text-[11px] px-2 py-0.5 bg-[var(--color-surface-2)] border border-[var(--color-border)] rounded text-[var(--color-muted-2)]">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-4">Get in Touch</h2>
+      <p class="text-sm text-[var(--color-muted-2)] mb-5 leading-relaxed">
+        Open to interesting conversations, collaborations, or just a chat about tech.
+      </p>
+      <div class="flex gap-3">
+        <a href="mailto:hello@sanjaychaudhari.com" class="px-4 py-2 bg-[var(--color-accent)] text-white rounded-lg text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors shadow-md shadow-blue-500/20">
+          Say Hello →
+        </a>
+        <a href="https://github.com/sanjaychaudhari" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-[var(--color-border)] text-[var(--color-muted-2)] rounded-lg text-sm font-medium hover:border-[var(--color-border-hover)] hover:text-[var(--color-text)] transition-colors">
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/sanjaychaudhari" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-[var(--color-border)] text-[var(--color-muted-2)] rounded-lg text-sm font-medium hover:border-[var(--color-border-hover)] hover:text-[var(--color-text)] transition-colors">
+          LinkedIn
+        </a>
+      </div>
+    </section>
+
+  </div>
+</Layout>

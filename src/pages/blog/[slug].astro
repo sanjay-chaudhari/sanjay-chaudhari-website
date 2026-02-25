@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+interface Props { post: CollectionEntry<'blog'>; }
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={`${post.data.title} — Sanjay Chaudhari`} description={post.data.description} type="article" publishedDate={post.data.date}>
+  <article>
+    <a href="/blog" class="inline-flex items-center gap-1.5 text-xs text-[var(--color-muted)] hover:text-[var(--color-text)] transition-colors mb-10">
+      ← Back to Blog
+    </a>
+
+    <header class="mb-10 pb-8 border-b border-[var(--color-border)]">
+      <div class="flex gap-1.5 mb-4">
+        {post.data.tags.map((tag: string) => (
+          <span class="text-[10px] px-2 py-0.5 bg-[var(--color-accent-dim)] text-[var(--color-accent)] rounded font-medium uppercase tracking-wide">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4 leading-tight tracking-tight">
+        {post.data.title}
+      </h1>
+      <p class="text-[var(--color-muted-2)] mb-6 leading-relaxed">{post.data.description}</p>
+      <div class="flex items-center gap-3 text-xs text-[var(--color-muted)]">
+        <time datetime={post.data.date.toISOString()}>
+          {post.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+        </time>
+        <span>·</span>
+        <span>{post.data.readingTime} min read</span>
+      </div>
+    </header>
+
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </article>
+</Layout>
