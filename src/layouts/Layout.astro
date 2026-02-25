@@ -12,7 +12,7 @@ interface Props {
 const {
   title,
   description = 'Sanjay Chaudhari — Software Engineer, .NET & Cloud specialist',
-  image = '/og-default.png',
+  image = '/og-default.svg',
   type = 'website',
   publishedDate,
 } = Astro.props;
@@ -38,9 +38,8 @@ const jsonLd = type === 'article'
       url: Astro.site,
       jobTitle: 'Software Engineer',
       sameAs: [
-        'https://github.com/sanjaychaudhari',
-        'https://linkedin.com/in/sanjaychaudhari',
-        'https://twitter.com/sanjaychaudhari',
+        'https://github.com/sanjay-chaudhari',
+        'https://www.linkedin.com/in/sanjay-chaudhari-it/',
       ],
     };
 
@@ -63,6 +62,8 @@ const navLinks = [
     <script is:inline>
       if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');
     </script>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="robots" content="index, follow" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Sanjay Chaudhari" />
@@ -82,9 +83,9 @@ const navLinks = [
   <body class="min-h-screen flex flex-col">
 
     <nav class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur-xl">
-      <div class="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
         <a href="/" class="font-bold text-[var(--color-text)] tracking-tight hover:text-[var(--color-accent)] transition-colors">
-          sanjay<span class="text-[var(--color-accent)]">.</span>dev
+          sanjaychaudhari<span class="text-[var(--color-accent)]">.</span>com
         </a>
         <div class="flex items-center gap-1">
           {navLinks.map(({ href, label }) => {
@@ -113,17 +114,19 @@ const navLinks = [
       </div>
     </nav>
 
-    <main class="flex-1 max-w-3xl mx-auto w-full px-6 py-14">
+    <main class="flex-1 max-w-5xl mx-auto w-full px-6 py-14">
       <slot />
     </main>
 
     <footer class="border-t border-[var(--color-border)] mt-auto">
-      <div class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between text-sm text-[var(--color-muted)]">
-        <span>© {new Date().getFullYear()} Sanjay Chaudhari</span>
+      <div class="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between text-sm text-[var(--color-muted)]">
+        <div>
+          <span>© {new Date().getFullYear()} Sanjay Chaudhari</span>
+          <p class="text-xs mt-1 opacity-60">Views and opinions expressed here are my own and do not represent my employer.</p>
+        </div>
         <div class="flex gap-5">
-          <a href="https://github.com/sanjaychaudhari" class="hover:text-[var(--color-text)] transition-colors">GitHub</a>
-          <a href="https://linkedin.com/in/sanjaychaudhari" class="hover:text-[var(--color-text)] transition-colors">LinkedIn</a>
-          <a href="https://twitter.com/sanjaychaudhari" class="hover:text-[var(--color-text)] transition-colors">Twitter</a>
+          <a href="https://github.com/sanjay-chaudhari" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text)] transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/sanjay-chaudhari-it/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text)] transition-colors">LinkedIn</a>
         </div>
       </div>
     </footer>

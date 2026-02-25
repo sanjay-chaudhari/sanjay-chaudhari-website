@@ -21,6 +21,7 @@ const projects = defineCollection({
     demo: z.string().optional(),
     status: z.enum(['Active', 'Beta', 'Stable']),
     featured: z.boolean().default(false),
+    contributed: z.boolean().default(false),
   }),
 });
 

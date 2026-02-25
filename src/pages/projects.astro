@@ -14,7 +14,7 @@ const statusStyle: Record<string, string> = {
 <Layout title="Projects — Sanjay Chaudhari" description="Open-source projects and side projects built with .NET, AWS, and cloud-native technologies.">
   <div class="mb-10">
     <h1 class="text-2xl font-bold text-[var(--color-text)] mb-2">Projects</h1>
-    <p class="text-[var(--color-muted)] text-sm">Things I've built and open-sourced.</p>
+    <p class="text-[var(--color-muted)] text-sm">Things I've built, open-sourced, and contributed to.</p>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -24,9 +24,16 @@ const statusStyle: Record<string, string> = {
           <h2 class="text-[var(--color-text)] font-semibold text-sm group-hover:text-[var(--color-accent)] transition-colors">
             {p.data.name}
           </h2>
-          <span class={`text-[10px] px-2 py-0.5 border rounded-full font-medium ${statusStyle[p.data.status]}`}>
-            {p.data.status}
-          </span>
+          <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+            {p.data.contributed && (
+              <span class="text-[10px] px-2 py-0.5 border border-purple-400/20 rounded-full font-medium text-purple-400 bg-purple-400/10">
+                Contributed
+              </span>
+            )}
+            <span class={`text-[10px] px-2 py-0.5 border rounded-full font-medium ${statusStyle[p.data.status]}`}>
+              {p.data.status}
+            </span>
+          </div>
         </div>
         <p class="text-xs text-[var(--color-muted)] leading-relaxed mb-4">{p.data.description}</p>
         <div class="flex flex-wrap gap-1.5 mb-4">

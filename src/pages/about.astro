@@ -2,20 +2,32 @@
 import Layout from '../layouts/Layout.astro';
 
 const skills = [
-  { category: 'Backend', items: ['.NET 10', 'C#', 'ASP.NET Core', 'Entity Framework', 'gRPC'] },
-  { category: 'Cloud', items: ['AWS', 'Azure', 'Cloudflare', 'Docker', 'Kubernetes'] },
-  { category: 'Frontend', items: ['Blazor', 'Astro', 'TypeScript', 'Tailwind CSS'] },
-  { category: 'Tools', items: ['Git', 'GitHub Actions', 'Terraform', 'Rider', 'VS Code'] },
+  { category: 'Languages', items: ['C#', 'TypeScript', 'JavaScript', 'Python'] },
+  { category: 'Backend & Frameworks', items: ['.NET Core', 'Node.js', 'GraphQL', 'REST APIs'] },
+  { category: 'Frontend', items: ['React.js', 'Next.js', 'Angular', 'AWS Amplify', 'Knockout.js'] },
+  { category: 'AWS Services', items: ['Lambda', 'API Gateway', 'AppSync', 'Step Functions', 'ECS', 'S3', 'DynamoDB', 'Cognito', 'CDK'] },
+  { category: 'Databases', items: ['PostgreSQL', 'MySQL', 'SQL Server', 'DynamoDB', 'MongoDB'] },
+  { category: 'Messaging & Streaming', items: ['SQS', 'SNS', 'Kafka', 'RabbitMQ'] },
+  { category: 'Architecture', items: ['Serverless', 'Event-Driven', 'Microservices', 'Distributed Systems'] },
+  { category: 'DevOps & IaC', items: ['GitHub Actions', 'Azure DevOps', 'Terraform', 'CloudFormation', 'Docker'] },
+  { category: 'CS Fundamentals', items: ['Data Structures', 'Algorithms', 'Low Level Design', 'OOP'] },
 ];
 
-const experience = [
-  { role: 'Senior Software Engineer', company: 'Company Name', period: '2022 – Present', desc: 'Building cloud-native backend systems on AWS using .NET 10 and microservices architecture.' },
-  { role: 'Software Engineer', company: 'Previous Company', period: '2019 – 2022', desc: 'Developed RESTful APIs and internal tooling with ASP.NET Core and Azure.' },
+const certifications = [
+  { name: 'AWS Certified Solutions Architect – Professional', active: false, badge: 'https://images.credly.com/images/2d84e428-9078-49b6-a804-13c15383d0de/image.png' },
+  { name: 'AWS Certified Generative AI Developer – Professional', active: true, badge: 'https://images.credly.com/images/52c6e5ac-9516-4944-a4df-e31b23c9bbf2/blob' },
+  { name: 'AWS Certified Machine Learning Engineer – Associate', active: true, badge: 'https://images.credly.com/images/1a634b4e-3d6b-4a74-b118-c0dcb429e8d2/image.png' },
+  { name: 'AWS Certified Solutions Architect – Associate', active: false, badge: 'https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png' },
+  { name: 'AWS Certified Developer – Associate', active: true, badge: 'https://images.credly.com/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png' },
+  { name: 'AWS Certified AI Practitioner', active: true, badge: 'https://images.credly.com/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png' },
+  { name: '.NET Workloads on AWS Lambda', active: true, badge: 'https://images.credly.com/images/221e7d7f-bceb-422e-8c31-436ecbcda614/image.png' },
+  { name: 'AWS Knowledge: Serverless', active: true, badge: 'https://images.credly.com/images/0c20a5b7-b4e9-4c2f-8b68-342e00a85e05/blob' },
+  { name: 'AWS Partner: Generative AI Essentials (Business)', active: true, badge: 'https://images.credly.com/images/4b547104-5ce9-43d5-8708-a7abb4b0c7ec/blob' },
 ];
 ---
 
 <Layout title="About — Sanjay Chaudhari" description="Software Engineer specialising in .NET and AWS. Learn about my experience, skills, and how to get in touch.">
-  <div class="max-w-2xl">
+  <div class="max-w-5xl">
 
     <!-- Bio -->
     <div class="flex items-start gap-5 mb-10 pb-10 border-b border-[var(--color-border)]">
@@ -24,38 +36,18 @@ const experience = [
       </div>
       <div>
         <h1 class="text-xl font-bold text-[var(--color-text)] mb-1">Sanjay Chaudhari</h1>
-        <p class="text-sm text-[var(--color-accent)] mb-3">Software Engineer · .NET & Cloud</p>
+        <p class="text-sm text-[var(--color-accent)] mb-3">Software Engineer · .NET, AWS & AI</p>
         <p class="text-sm text-[var(--color-muted-2)] leading-relaxed">
-          Backend engineer based in India, focused on distributed systems and cloud-native development with .NET and AWS.
-          I write about what I learn — mostly around .NET, AWS, and software architecture.
+          Fullstack engineer based in India, focused on distributed systems, cloud-native development, and AI with .NET and AWS.
+          I write about what I learn — mostly around .NET, AWS, AI, and software architecture.
         </p>
       </div>
     </div>
 
-    <!-- Experience -->
-    <section class="mb-10 pb-10 border-b border-[var(--color-border)]">
-      <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-5">Experience</h2>
-      <div class="space-y-5">
-        {experience.map((e) => (
-          <div class="flex gap-4">
-            <div class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] mt-2 flex-shrink-0"></div>
-            <div>
-              <div class="flex items-baseline gap-2 mb-0.5">
-                <span class="text-sm font-semibold text-[var(--color-text)]">{e.role}</span>
-                <span class="text-xs text-[var(--color-muted)]">@ {e.company}</span>
-              </div>
-              <p class="text-xs text-[var(--color-muted)] mb-1.5">{e.period}</p>
-              <p class="text-sm text-[var(--color-muted-2)] leading-relaxed">{e.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
     <!-- Skills -->
     <section class="mb-10 pb-10 border-b border-[var(--color-border)]">
       <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-5">Skills</h2>
-      <div class="grid grid-cols-2 gap-3">
+      <div class="grid grid-cols-3 gap-3">
         {skills.map((group) => (
           <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl">
             <h3 class="text-xs font-semibold text-[var(--color-accent)] mb-3 uppercase tracking-wide">{group.category}</h3>
@@ -71,6 +63,55 @@ const experience = [
       </div>
     </section>
 
+    <!-- Certifications -->
+    <section class="mb-10 pb-10 border-b border-[var(--color-border)]">
+      <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-5">Certifications</h2>
+      <div class="grid grid-cols-3 gap-3">
+        {certifications.map((c) => (
+          <div class="flex gap-3 items-center p-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl">
+            <img src={c.badge} alt={c.name} class="w-20 h-20 flex-shrink-0 object-contain" loading="lazy" />
+            <div class="min-w-0">
+              <p class="text-xs font-medium text-[var(--color-text)] leading-snug">{c.name}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Writing -->
+    <section class="mb-10 pb-10 border-b border-[var(--color-border)]">
+      <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-5">Writing</h2>
+
+      <h3 class="text-xs font-semibold text-[var(--color-accent)] uppercase tracking-wide mb-3">AWS Blog Posts</h3>
+      <div class="space-y-2 mb-7">
+        {[
+          { title: 'Create a CI/CD pipeline for .NET Lambda functions with AWS CDK Pipelines', url: 'https://aws.amazon.com/blogs/devops/create-a-ci-cd-pipeline-for-net-lambda-functions-with-aws-cdk-pipelines/' },
+          { title: 'Modernizing a WCF service to CoreWCF: Lessons learned', url: 'https://aws.amazon.com/blogs/modernizing-with-aws/wcf-service-to-corewcf' },
+          { title: 'Implement fine-grained authorization in your .NET API using Amazon Cognito Custom Scopes', url: 'https://aws.amazon.com/blogs/dotnet/implement-fine-grained-authorization-in-your-net-api-using-amazon-cognito-custom-scopes/' },
+          { title: 'Build DR ready .NET Web APIs on AWS', url: 'https://aws.amazon.com/blogs/dotnet/build-dr-ready-net-web-apis-on-aws/' },
+          { title: 'Building a GraphQL API with AWS AppSync Using Direct Lambda Resolvers in .NET', url: 'https://aws.amazon.com/blogs/dotnet/building-a-graphql-api-with-aws-appsync-using-direct-lambda-resolvers-in-net/' },
+        ].map((item) => (
+          <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 group">
+            <span class="text-[var(--color-accent)] mt-0.5 flex-shrink-0 text-xs">↗</span>
+            <span class="text-sm text-[var(--color-muted-2)] group-hover:text-[var(--color-accent)] transition-colors leading-snug">{item.title}</span>
+          </a>
+        ))}
+      </div>
+
+      <h3 class="text-xs font-semibold text-[var(--color-accent)] uppercase tracking-wide mb-3">Serverless Patterns</h3>
+      <div class="space-y-2">
+        {[
+          { title: 'EventBridge Scheduler → Lambda every 5 minutes (CDK .NET)', url: 'https://serverlessland.com/patterns/event-bridge-scheduler-lambda-cdk-dotnet' },
+          { title: 'AWS App Runner Service with .NET Web API (CDK .NET)', url: 'https://serverlessland.com/patterns/apprunner-cdk-dotnet' },
+        ].map((item) => (
+          <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 group">
+            <span class="text-[var(--color-accent)] mt-0.5 flex-shrink-0 text-xs">↗</span>
+            <span class="text-sm text-[var(--color-muted-2)] group-hover:text-[var(--color-accent)] transition-colors leading-snug">{item.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
     <!-- Contact -->
     <section>
       <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-4">Get in Touch</h2>
@@ -78,13 +119,13 @@ const experience = [
         Open to interesting conversations, collaborations, or just a chat about tech.
       </p>
       <div class="flex gap-3">
-        <a href="mailto:hello@sanjaychaudhari.com" class="px-4 py-2 bg-[var(--color-accent)] text-white rounded-lg text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors shadow-md shadow-blue-500/20">
+        <a href="mailto:sanjay_chaudhari@hotmail.com" class="px-4 py-2 bg-[var(--color-accent)] text-white rounded-lg text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors shadow-md shadow-blue-500/20">
           Say Hello →
         </a>
-        <a href="https://github.com/sanjaychaudhari" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-[var(--color-border)] text-[var(--color-muted-2)] rounded-lg text-sm font-medium hover:border-[var(--color-border-hover)] hover:text-[var(--color-text)] transition-colors">
+        <a href="https://github.com/sanjay-chaudhari" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-[var(--color-border)] text-[var(--color-muted-2)] rounded-lg text-sm font-medium hover:border-[var(--color-border-hover)] hover:text-[var(--color-text)] transition-colors">
           GitHub
         </a>
-        <a href="https://linkedin.com/in/sanjaychaudhari" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-[var(--color-border)] text-[var(--color-muted-2)] rounded-lg text-sm font-medium hover:border-[var(--color-border-hover)] hover:text-[var(--color-text)] transition-colors">
+        <a href="https://www.linkedin.com/in/sanjay-chaudhari-it/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-[var(--color-border)] text-[var(--color-muted-2)] rounded-lg text-sm font-medium hover:border-[var(--color-border-hover)] hover:text-[var(--color-text)] transition-colors">
           LinkedIn
         </a>
       </div>
