@@ -1,4 +1,4 @@
-# sanjay.dev — Personal Portfolio
+# sanjaychaudhari.com — Personal Portfolio
 
 Personal portfolio website built with [Astro](https://astro.build), Tailwind CSS, and Markdown. Features a blog, projects showcase, and resume/about page. Content is managed via MD files in the repo — no CMS, no database.
 
@@ -95,7 +95,7 @@ Every page includes:
 
 After deploying, submit your sitemap at [Google Search Console](https://search.google.com/search-console):
 ```
-https://yourdomain.com/sitemap.xml
+https://sanjaychaudhari.com/sitemap-index.xml
 ```
 
 ## Deployment (Cloudflare Pages)
