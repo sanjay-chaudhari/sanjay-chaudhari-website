@@ -60,7 +60,7 @@ const navLinks = [
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
     <script is:inline>
-      if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('theme') !== 'dark') document.documentElement.classList.add('light');
     </script>
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="robots" content="index, follow" />
@@ -83,11 +83,12 @@ const navLinks = [
   <body class="min-h-screen flex flex-col">
 
     <nav class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur-xl">
-      <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="/" class="font-bold text-[var(--color-text)] tracking-tight hover:text-[var(--color-accent)] transition-colors">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <a href="/" class="font-bold text-[var(--color-text)] tracking-tight hover:text-[var(--color-accent)] transition-colors text-sm sm:text-base">
           sanjaychaudhari<span class="text-[var(--color-accent)]">.</span>com
         </a>
-        <div class="flex items-center gap-1">
+        <!-- Desktop nav -->
+        <div class="hidden sm:flex items-center gap-1">
           {navLinks.map(({ href, label }) => {
             const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
             return (
@@ -111,15 +112,51 @@ const navLinks = [
             <span id="theme-icon" class="text-base leading-none">☀️</span>
           </button>
         </div>
+        <!-- Mobile: theme toggle + hamburger -->
+        <div class="flex sm:hidden items-center gap-2">
+          <button
+            id="theme-toggle"
+            aria-label="Toggle theme"
+            class="p-1.5 rounded-md text-[var(--color-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
+          >
+            <span id="theme-icon" class="text-base leading-none">☀️</span>
+          </button>
+          <button
+            id="menu-toggle"
+            aria-label="Toggle menu"
+            class="p-1.5 rounded-md text-[var(--color-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
+          >
+            <svg id="menu-icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <svg id="menu-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden sm:hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]">
+        {navLinks.map(({ href, label }) => {
+          const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+          return (
+            <a
+              href={href}
+              class={`block px-4 py-3 text-sm transition-colors border-b border-[var(--color-border)] last:border-0 ${
+                isActive
+                  ? 'text-[var(--color-accent)] bg-[var(--color-accent-dim)]'
+                  : 'text-[var(--color-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)]'
+              }`}
+            >
+              {label}
+            </a>
+          );
+        })}
       </div>
     </nav>
 
-    <main class="flex-1 max-w-5xl mx-auto w-full px-6 py-14">
+    <main class="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-14">
       <slot />
     </main>
 
     <footer class="border-t border-[var(--color-border)] mt-auto">
-      <div class="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between text-sm text-[var(--color-muted)]">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-[var(--color-muted)]">
         <div>
           <span>© {new Date().getFullYear()} Sanjay Chaudhari</span>
           <p class="text-xs mt-1 opacity-60">Views and opinions expressed here are my own and do not represent my employer.</p>
@@ -134,15 +171,30 @@ const navLinks = [
     <script is:inline>
       const root = document.documentElement;
       function updateIcon() {
-        document.getElementById('theme-icon').textContent =
-          root.classList.contains('light') ? '🌙' : '☀️';
+        document.querySelectorAll('#theme-icon').forEach(el => {
+          el.textContent = root.classList.contains('light') ? '🌙' : '☀️';
+        });
       }
       updateIcon();
-      document.getElementById('theme-toggle').addEventListener('click', () => {
-        root.classList.toggle('light');
-        localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
-        updateIcon();
+      document.querySelectorAll('#theme-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          root.classList.toggle('light');
+          localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+          updateIcon();
+        });
       });
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden', isOpen);
+          iconOpen?.classList.toggle('hidden', !isOpen);
+          iconClose?.classList.toggle('hidden', isOpen);
+        });
+      }
     </script>
   </body>
 </html>

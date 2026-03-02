@@ -14,14 +14,14 @@ const allPosts = (await getCollection('blog'))
 
   <div class="space-y-px">
     {allPosts.map((post) => (
-      <a href={`/blog/${post.slug}`} class="group flex items-start justify-between gap-6 py-5 border-b border-[var(--color-border)] last:border-0 hover:bg-[var(--color-surface)] -mx-4 px-4 rounded-xl transition-colors">
+      <a href={`/blog/${post.slug}`} class="group flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-6 py-5 border-b border-[var(--color-border)] last:border-0 hover:bg-[var(--color-surface)] -mx-4 px-4 rounded-xl transition-colors">
         <div class="flex-1 min-w-0">
           <h2 class="text-[var(--color-text)] font-semibold group-hover:text-[var(--color-accent)] transition-colors mb-1.5">
             {post.data.title}
           </h2>
           <p class="text-sm text-[var(--color-muted)] leading-relaxed mb-3 line-clamp-2">{post.data.description}</p>
           <div class="flex items-center gap-3">
-            <div class="flex gap-1.5">
+            <div class="flex flex-wrap gap-1.5">
               {post.data.tags.slice(0, 3).map((tag: string) => (
                 <span class="text-[10px] px-2 py-0.5 bg-[var(--color-accent-dim)] text-[var(--color-accent)] rounded font-medium">
                   {tag}
@@ -31,7 +31,7 @@ const allPosts = (await getCollection('blog'))
             <span class="text-xs text-[var(--color-muted)]">{post.data.readingTime} min read</span>
           </div>
         </div>
-        <time class="text-xs text-[var(--color-muted)] whitespace-nowrap flex-shrink-0 mt-1" datetime={post.data.date.toISOString()}>
+        <time class="text-xs text-[var(--color-muted)] whitespace-nowrap flex-shrink-0 sm:mt-1" datetime={post.data.date.toISOString()}>
           {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
         </time>
       </a>

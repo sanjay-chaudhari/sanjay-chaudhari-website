@@ -49,7 +49,7 @@ const certifications = [
     <!-- Skills -->
     <section class="mb-10 pb-10 border-b border-[var(--color-border)]">
       <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-5">Skills</h2>
-      <div class="grid grid-cols-3 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {skills.map((group) => (
           <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl">
             <h3 class="text-xs font-semibold text-[var(--color-accent)] mb-3 uppercase tracking-wide">{group.category}</h3>
@@ -68,7 +68,7 @@ const certifications = [
     <!-- Certifications -->
     <section class="mb-10 pb-10 border-b border-[var(--color-border)]">
       <h2 class="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-widest mb-5">Certifications</h2>
-      <div class="grid grid-cols-3 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {certifications.map((c) => (
           <div class="flex gap-3 items-center p-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl">
             <img src={c.badge} alt={c.name} class="w-20 h-20 flex-shrink-0 object-contain" loading="lazy" />
